@@ -1,0 +1,70 @@
+version: '3.3'
+
+services:
+
+    nginx:
+        container_name: ${PROJECT_NAME}_nginx
+        image: nginx:latest
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - wp_data:/var/www/html
+            - ${PLUGINS}:/var/www/html/wp-content/plugins
+            - ${THEMES}:/var/www/html/wp-content/themes
+            - ${UPLOADS}:/var/www/html/wp-content/uploads
+            - ${NGINX_CONF_DIR}:/etc/nginx/conf.d
+            - ${NGINX_SSL_DIR}:/etc/nginx/certs
+        depends_on: 
+            - wordpress
+            - phpmyadmin
+
+    db:
+        container_name: ${PROJECT_NAME}_db
+        image: mysql:latest
+        volumes:
+            - mysql_data:/var/lib/mysql
+        restart: always
+        command: 
+            --innodb_use_native_aio=0 
+        environment:
+            MYSQL_ROOT_PASSWORD: somewordpress
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wordpress
+            MYSQL_PASSWORD: wordpress
+
+    wordpress:
+        container_name: ${PROJECT_NAME}_wp
+        depends_on:
+            - db
+        image: wordpress:php7.4-fpm
+        volumes:
+            - wp_data:/var/www/html
+            - ${PLUGINS}:/var/www/html/wp-content/plugins
+            - ${THEMES}:/var/www/html/wp-content/themes
+            - ${UPLOADS}:/var/www/html/wp-content/uploads
+        ports:
+            - "8000:80"
+        restart: always
+        environment:
+            WORDPRESS_DB_HOST: db:3306
+            WORDPRESS_DB_USER: wordpress
+            WORDPRESS_DB_PASSWORD: wordpress
+            WORDPRESS_DB_NAME: wordpress
+
+    phpmyadmin:
+        container_name: ${PROJECT_NAME}_pma
+        image: phpmyadmin/phpmyadmin:4.9.4
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+        restart: always
+        ports:
+            - '4000:80'
+        depends_on:
+            - db
+
+volumes:
+    wp_data:
+    mysql_data:

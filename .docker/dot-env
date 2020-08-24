@@ -1,0 +1,7 @@
+PROJECT_NAME="WP_DOCK"
+PLUGINS=../plugins
+THEMES=../themes
+UPLOADS=../uploads
+
+NGINX_CONF_DIR=./nginx/conf.d
+NGINX_SSL_DIR=./nginx/ssl
