@@ -23,8 +23,8 @@ docker run -it --rm --volumes-from WP_DOCK_wp --network container:WP_DOCK_wp --u
 docker run -it --rm --volumes-from $WORDPRESS_CONTAINER --network container:$WORDPRESS_CONTAINER --user 33:33 wordpress:cli $COMMANDS $PARAMS
 ```
 
-|VAR|DESC
-|$WORDPRESS_CONTAINER|The wordpress container name
-|-|-
-|$COMMANDS|The wp-cli command i.e. `core install`
+|VAR|DESC|
+|-|-|
+|$WORDPRESS_CONTAINER|The wordpress container name|
+|$COMMANDS|The wp-cli command i.e. `core install`|
 
