@@ -24,6 +24,7 @@ docker run -it --rm --volumes-from $WORDPRESS_CONTAINER --network container:$WOR
 ```
 
 |-|-|
-|$WORDPRESS_CONTAINER|The wordpress container name|
-|$COMMANDS|The wp-cli command i.e. `core install`, ``
+|$WORDPRESS_CONTAINER|The wordpress container name
+|-|-|
+|$COMMANDS|The wp-cli command i.e. `core install`
 |-|-|
