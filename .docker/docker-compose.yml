@@ -16,7 +16,7 @@ services:
             - ${NGINX_CONF_DIR}:/etc/nginx/conf.d
             - ${NGINX_SSL_DIR}:/etc/nginx/certs
         depends_on: 
-            - wordpress
+            - workspace
             - phpmyadmin
 
     db:
@@ -33,11 +33,11 @@ services:
             MYSQL_USER: wordpress
             MYSQL_PASSWORD: wordpress
 
-    wordpress:
+    workspace:
         container_name: ${PROJECT_NAME}_wp
         depends_on:
             - db
-        image: wordpress:php7.4-fpm
+        build: ./workspace
         volumes:
             - wp_data:/var/www/html
             - ${PLUGINS}:/var/www/html/wp-content/plugins
@@ -64,6 +64,12 @@ services:
             - '4000:80'
         depends_on:
             - db
+
+    mailhog:
+        container_name: ${PROJECT_NAME}_mailhog
+        image: mailhog/mailhog
+        ports:
+            - 8025:8025
 
 volumes:
     wp_data:
