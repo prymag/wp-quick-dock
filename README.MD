@@ -64,4 +64,6 @@ docker-compose -f docker-compose-testing.yml run --rm -v E:\devprojects\wp-quick
 
 4. Run `phpunit`
 
-
+```
+docker-compose -f docker-compose-testing.yml run --rm -v E:\Projects\docker-wp-starter\plugins\prymag-test:/app test_wp phpunit
+```
