@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+
+    test_db:
+        container_name: ${PROJECT_NAME}_test_db
+        image: mysql:latest
+        volumes: 
+            - test_db_data:/var/lib/mysql
+        restart: always
+        command: 
+            --innodb_use_native_aio=0 
+        entrypoint: ['/entrypoint.sh', '--default-authentication-plugin=mysql_native_password']
+        environment:
+            MYSQL_ROOT_PASSWORD: my-root-passwd
+
+    test_wp:
+        build: ./testing
+        volumes:
+            - test_tmp_dir:/tmp
+
+volumes:
+    test_tmp_dir:
+    test_db_data:
