@@ -10,9 +10,7 @@ services:
             - "443:443"
         volumes:
             - wp_data:/var/www/html
-            - ${PLUGINS}:/var/www/html/wp-content/plugins
-            - ${THEMES}:/var/www/html/wp-content/themes
-            - ${UPLOADS}:/var/www/html/wp-content/uploads
+            - ${SOURCE}:/var/www/html/wp-content
             - ${NGINX_CONF_DIR}:/etc/nginx/conf.d
             - ${NGINX_SSL_DIR}:/etc/nginx/certs
         depends_on: 
@@ -40,11 +38,7 @@ services:
         build: ./workspace
         volumes:
             - wp_data:/var/www/html
-            - ${PLUGINS}:/var/www/html/wp-content/plugins
-            - ${THEMES}:/var/www/html/wp-content/themes
-            - ${UPLOADS}:/var/www/html/wp-content/uploads
-        ports:
-            - "8000:80"
+            - ${SOURCE}:/var/www/html/wp-content
         restart: always
         environment:
             WORDPRESS_DB_HOST: db:3306
@@ -54,22 +48,19 @@ services:
 
     phpmyadmin:
         container_name: ${PROJECT_NAME}_pma
-        image: phpmyadmin/phpmyadmin:4.9.4
+        image: phpmyadmin/phpmyadmin
         environment:
+            PMA_ABSOLUTE_URI: https://wp-docker.com/pma
             PMA_HOST: db
             PMA_PORT: 3306
             PMA_ARBITRARY: 1
         restart: always
-        ports:
-            - '4000:80'
         depends_on:
             - db
 
     mailhog:
         container_name: ${PROJECT_NAME}_mailhog
         image: mailhog/mailhog
-        ports:
-            - 8025:8025
 
 volumes:
     wp_data:

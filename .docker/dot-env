@@ -1,7 +1,17 @@
+#################################
+# WP QUICK DOCK
+#################################
 PROJECT_NAME="WP_DOCK"
-PLUGINS=../plugins
-THEMES=../themes
-UPLOADS=../uploads
 
+#################################
+# SOURCE DIRECTORY
+# - Path where the wp-content 
+# folder is bind mounted
+#################################
+SOURCE=../src/wp-content
+
+#################################
+# NGINX
+#################################
 NGINX_CONF_DIR=./nginx/conf.d
 NGINX_SSL_DIR=./nginx/ssl

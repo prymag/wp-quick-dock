@@ -15,8 +15,7 @@ RUN apt-get update \
 # CONFIGURE mhsendmail
 ENV PATH /usr/local/go/bin:$PATH
 RUN go get github.com/mailhog/mhsendmail \
-  && cp /root/go/bin/mhsendmail /usr/local/bin/mhsendmail
-
-RUN echo "sendmail_path = /usr/local/bin/mhsendmail --smtp-addr mailhog:1025" > /usr/local/etc/php/conf.d/sendmail.ini
+  && cp /root/go/bin/mhsendmail /usr/local/bin/mhsendmail \
+  && echo "sendmail_path = /usr/local/bin/mhsendmail --smtp-addr mailhog:1025" > /usr/local/etc/php/conf.d/sendmail.ini
 
 ########## END INSTALL mhsendmail ################

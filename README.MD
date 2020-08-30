@@ -59,11 +59,16 @@ docker-compose -f docker-compose-testing.yml run --rm  -v $PLUGIN_DIR_PATH:/app 
 
 I.E.
 ```
-docker-compose -f docker-compose-testing.yml run --rm -v E:\devprojects\wp-quick-dock\plugins\prymag-testing:/app test_wp /app/bin/install-wp-tests.sh wordpress root somewordpress test_db latest
+docker-compose -f docker-compose-testing.yml run --rm -v E:\devprojects\wp-quick-dock\src\wp-content\plugins\prymag-testing:/app test_wp /app/bin/install-wp-tests.sh wordpress root my-root-passwd test_db latest
 ```
 
 4. Run `phpunit`
 
 ```
-docker-compose -f docker-compose-testing.yml run --rm -v E:\Projects\docker-wp-starter\plugins\prymag-test:/app test_wp phpunit
+docker-compose -f docker-compose-testing.yml run --rm -v E:\devprojects\wp-quick-dock\src\wp-content\plugins\prymag-testing:/app test_wp phpunit
 ```
+
+# SERVICES
+
+1. *PhpMyAdmin* - https://wp-docker.com/pma/
+2. *Mailhog* - https://wp-docker.com/mailhog/
