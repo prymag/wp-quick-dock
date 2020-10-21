@@ -72,3 +72,6 @@ docker-compose -f docker-compose-testing.yml run --rm -v E:\devprojects\wp-quick
 
 1. *PhpMyAdmin* - https://wp-docker.com/pma/
 2. *Mailhog* - https://wp-docker.com/mailhog/
+
+# IMPORTING MYSQL
+docker exec -i container-name mysql -usomeusername -psomepassword db_name < dump.sql
