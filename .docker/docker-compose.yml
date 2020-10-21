@@ -9,8 +9,7 @@ services:
             - "80:80"
             - "443:443"
         volumes:
-            - wp_data:/var/www/html
-            - ${SOURCE}:/var/www/html/wp-content
+            - ${SOURCE}:/var/www/html
             - ${NGINX_CONF_DIR}:/etc/nginx/conf.d
             - ${NGINX_SSL_DIR}:/etc/nginx/certs
         depends_on: 
@@ -37,14 +36,14 @@ services:
             - db
         build: ./workspace
         volumes:
-            - wp_data:/var/www/html
-            - ${SOURCE}:/var/www/html/wp-content
+            - ${SOURCE}:/var/www/html
         restart: always
         environment:
             WORDPRESS_DB_HOST: db:3306
             WORDPRESS_DB_USER: wordpress
             WORDPRESS_DB_PASSWORD: wordpress
             WORDPRESS_DB_NAME: wordpress
+            WORDPRESS_DEBUG: 1
 
     phpmyadmin:
         container_name: ${PROJECT_NAME}_pma
