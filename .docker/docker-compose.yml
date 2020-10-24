@@ -9,7 +9,7 @@ services:
             - "80:80"
             - "443:443"
         volumes:
-            - ${SOURCE}:/var/www/html
+            - ${WP_CODE_PATH_HOST}:/var/www/html
             - ${NGINX_CONF_DIR}:/etc/nginx/conf.d
             - ${NGINX_SSL_DIR}:/etc/nginx/certs
         depends_on: 
@@ -34,9 +34,13 @@ services:
         container_name: ${PROJECT_NAME}_wp
         depends_on:
             - db
-        build: ./workspace
+        build: 
+            context: ./workspace
+            args:
+                - USE_MAILHOG=${USE_MAILHOG}
+                - MAILHOG_PORT=${MAILHOG_PORT}
         volumes:
-            - ${SOURCE}:/var/www/html
+            - ${WP_CODE_PATH_HOST}:/var/www/html
         restart: always
         environment:
             WORDPRESS_DB_HOST: db:3306
