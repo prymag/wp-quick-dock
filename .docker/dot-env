@@ -8,10 +8,32 @@ PROJECT_NAME="WP_DOCK"
 # - Path where the wp-content 
 # folder is bind mounted
 #################################
-SOURCE=../src/wp-content
+WP_CODE_PATH_HOST=../src
+
+#################################
+# WORKSPACE
+#################################
+WORKSPACE_PATH=./workspace
+USE_MAILHOG=false
+MAILHOG_PORT=1025
+ENABLE_DEBUG=1
+
+#################################
+# PHPMYADMIN
+#################################
+PHPMYADMIN_DOCKER_PATH=./phpmyadmin/
+
+#################################
+# DATABASE
+#################################
+DB_ROOT_PASSWORD=somerootpassword
+DB_NAME=wordpress
+DB_USER=wordpress
+DB_PASSWORD=wordpress
 
 #################################
 # NGINX
 #################################
+NGINX_DOCKER_PATH=./nginx/
 NGINX_CONF_DIR=./nginx/conf.d
 NGINX_SSL_DIR=./nginx/ssl
