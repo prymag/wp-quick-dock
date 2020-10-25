@@ -27,10 +27,10 @@ services:
         command: 
             --innodb_use_native_aio=0 
         environment:
-            MYSQL_ROOT_PASSWORD: somewordpress
-            MYSQL_DATABASE: wordpress
-            MYSQL_USER: wordpress
-            MYSQL_PASSWORD: wordpress
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
 
     workspace:
         container_name: ${PROJECT_NAME}_wp
@@ -46,10 +46,10 @@ services:
         restart: always
         environment:
             WORDPRESS_DB_HOST: db:3306
-            WORDPRESS_DB_USER: wordpress
-            WORDPRESS_DB_PASSWORD: wordpress
-            WORDPRESS_DB_NAME: wordpress
-            WORDPRESS_DEBUG: 1
+            WORDPRESS_DB_USER: ${DB_USER}
+            WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+            WORDPRESS_DB_NAME: ${DB_NAME}
+            WORDPRESS_DEBUG: ${ENABLE_DEBUG}
 
     phpmyadmin:
         container_name: ${PROJECT_NAME}_pma

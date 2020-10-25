@@ -5,10 +5,6 @@
 2. Navigate inside `.docker` folder
 3. copy `dot-env` file to `.env`
 4. *Optional* Modify the `PROJECT_NAME` inside the `.env` file
-5. Generate `ssl` certificates. Navigate to `.docker/nginx/ssl` folder
-```
-openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout ssl.key -out ssl.cert
-```
 6. Modify `.docker/nginx/conf.d/site.conf` add change the `server_name`. Default is `wp-docker.com`
 7. Update `host` file for local development
 
