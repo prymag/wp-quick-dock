@@ -43,6 +43,7 @@ services:
                 - MAILHOG_PORT=${MAILHOG_PORT}
         volumes:
             - ${WP_CODE_PATH_HOST}:/var/www/html
+            - ${WORKSPACE_PATH}/conf.d/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
         restart: always
         environment:
             WORDPRESS_DB_HOST: db:3306
